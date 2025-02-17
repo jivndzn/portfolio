@@ -1,18 +1,18 @@
 "use client"
 
 import * as React from "react"
+import * as CommandPrimitive from "cmdk"
 import { type DialogProps } from "@radix-ui/react-dialog"
-import { Command as CommandPrimitive } from "cmdk"
 import { Search } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 const Command = React.forwardRef<
-  React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
+  React.ElementRef<typeof CommandPrimitive.Command>,
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Command>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive
+  <CommandPrimitive.Command
     ref={ref}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
@@ -21,7 +21,7 @@ const Command = React.forwardRef<
     {...props}
   />
 ))
-Command.displayName = CommandPrimitive.displayName
+Command.displayName = CommandPrimitive.Command.displayName
 
 const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
