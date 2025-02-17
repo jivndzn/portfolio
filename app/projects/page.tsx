@@ -22,27 +22,6 @@ export default function Projects() {
       link: "https://github.com/jivndzn/portfolio",
       size: "large"
     },
-    {
-      title: "AI Code Assistant",
-      description: "An intelligent coding assistant powered by machine learning, helping developers write better code faster.",
-      date: "Nov 15, 2023",
-      link: "#",
-      size: "medium"
-    },
-    {
-      title: "Cloud Dashboard",
-      description: "Real-time cloud infrastructure monitoring and management dashboard with advanced analytics.",
-      date: "Oct 1, 2023",
-      link: "#",
-      size: "small"
-    },
-    {
-      title: "DevTools Suite",
-      description: "A collection of developer tools and utilities for improved workflow and productivity.",
-      date: "Sep 5, 2023",
-      link: "#",
-      size: "medium"
-    }
   ]
 
   return (
@@ -102,7 +81,7 @@ export default function Projects() {
             >
               <Link href={project.link}>
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
                   <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10 h-full">
                     <div className="flex justify-between items-start mb-4">
                       <div className="space-y-1">
