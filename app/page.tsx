@@ -56,16 +56,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center max-w-md text-white/90 mt-8"
         >
-          I&apos;m a software developer for{' '}
-          <Link 
-            href="https://scrubbed.net" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white hover:underline"
-          >
-            scrubbed.net
-          </Link>{' '}
-          and currently learning game developing &apos;cause I love games.
+          I am a computer engineering graduate from the Holy Angel University, and welcome to my portfolio!
         </motion.p>
       </div>
     </main>

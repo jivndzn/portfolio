@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, Twitter, Mail, Github } from 'lucide-react'
+import { ArrowLeft, Twitter, Mail, Github, Facebook, Linkedin, Phone } from 'lucide-react'
 
 export default function Contact() {
   const contacts = [
@@ -24,6 +24,24 @@ export default function Contact() {
       value: 'jivndzn',
       icon: <Github className="h-6 w-6" />,
       href: 'https://github.com/jivndzn'
+    },
+    {
+      platform: 'Facebook',
+      value: 'jid4th',
+      icon: <Facebook className="h-6 w-6" />,
+      href: 'https://www.facebook.com/jid4th/'
+    },
+    {
+      platform: 'LinkedIn',
+      value: 'john-ivan-dizon',
+      icon: <Linkedin className="h-6 w-6" />,
+      href: 'https://www.linkedin.com/in/john-ivan-dizon-735aaa258/'
+    },
+    {
+      platform: 'Phone',
+      value: '+63905-199-3081',
+      icon: <Phone className="h-6 w-6" />,
+      href: 'tel:+639051993081'
     }
   ]
 
@@ -68,7 +86,7 @@ export default function Contact() {
             >
               <Link href={contact.href}>
                 <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-800 to-gray-900 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
                   <div className="relative flex flex-col items-center gap-4 p-8 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10">
                     <div className="p-3 rounded-full bg-white/10">
                       {contact.icon}
