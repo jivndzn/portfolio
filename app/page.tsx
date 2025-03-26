@@ -1,41 +1,73 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import Image from 'next/image'
+import { motion, useScroll, useTransform } from "framer-motion"
+import Link from "next/link"
+import Image from "next/image"
+import { useState, useEffect } from "react"
+import { Code, Database, Globe, Layers, Server } from "lucide-react"
 
 export default function Home() {
-  return (
-    <main className="relative min-h-screen overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src="/background.jpg"
-        alt="Misty forest background"
-        fill
-        className="object-cover object-center"
-        priority
-      />
-      
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30" />
+  const { scrollYProgress } = useScroll()
+  const [isMounted, setIsMounted] = useState(false)
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
+  // Modify opacity transformation to ensure visibility from the top
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  const blurValue = useTransform(scrollYProgress, [0, 0.1], [0, 8])
+
+  useEffect(() => {
+    setIsMounted(true)
+    document.documentElement.style.scrollBehavior = "smooth"
+    document.body.style.scrollBehavior = "smooth"
+
+    return () => {
+      document.documentElement.style.scrollBehavior = ""
+      document.body.style.scrollBehavior = ""
+    }
+  }, [])
+
+  return (
+    <main className="relative min-h-screen scroll-smooth">
+      {/* Background Image with Scroll Effects */}
+      <motion.div
+        className="fixed inset-0 z-0"
+        style={{
+          opacity: 1, // Always fully visible
+          filter: `blur(${blurValue.get()}px) brightness(0.7)`,
+        }}
+      >
+        <Image
+          src="/background.jpg"
+          alt="Misty forest background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </motion.div>
+
+      {/* Rest of the code remains the same as in the previous submission */}
+      {/* Hero Section */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <motion.nav
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="absolute top-1/3 left-0 right-0 flex justify-center space-x-8 mb-12"
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          className="absolute top-1/3 left-0 right-0 flex justify-center space-x-4 sm:space-x-8 mb-12"
         >
-          <Link 
-            href="/projects" 
-            className="text-white/90 hover:text-white text-xl transition-colors hover:scale-110 transform duration-200"
+          <Link
+            href="/projects"
+            className="text-white/90 hover:text-white text-lg sm:text-xl transition-all hover:scale-110 transform duration-300 drop-shadow-lg"
           >
             Projects
           </Link>
-          <Link 
-            href="/contact" 
-            className="text-white/90 hover:text-white text-xl transition-colors hover:scale-110 transform duration-200"
+          <Link
+            href="/aboutme"
+            className="text-white/90 hover:text-white text-lg sm:text-xl transition-all hover:scale-110 transform duration-300 drop-shadow-lg"
+          >
+            About Me
+          </Link>
+          <Link
+            href="/contact"
+            className="text-white/90 hover:text-white text-lg sm:text-xl transition-all hover:scale-110 transform duration-300 drop-shadow-lg"
           >
             Contact
           </Link>
@@ -44,8 +76,8 @@ export default function Home() {
         <motion.h1
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-6xl md:text-8xl font-bold text-white text-center mt-12"
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+          className="text-5xl sm:text-6xl md:text-8xl font-bold text-white text-center mt-12 drop-shadow-lg"
         >
           jivndzn
         </motion.h1>
@@ -53,8 +85,8 @@ export default function Home() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="text-center max-w-md text-white/90 mt-8"
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+          className="text-center max-w-md text-white/90 mt-8 drop-shadow-lg"
         >
           I am a computer engineering graduate from the Holy Angel University, and welcome to my portfolio!
         </motion.p>
