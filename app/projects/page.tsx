@@ -32,7 +32,7 @@ export default function Projects() {
         alt="Misty forest background"
         fill
         className="object-cover object-center"
-        priority
+        loading="lazy"
       />
       
       {/* Overlay for better text readability */}
@@ -81,7 +81,7 @@ export default function Projects() {
             >
               <Link href={project.link}>
                 <div className="relative group">
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
                   <div className="relative p-6 bg-black/50 backdrop-blur-sm rounded-lg border border-white/10 h-full">
                     <div className="flex justify-between items-start mb-4">
                       <div className="space-y-1">
@@ -104,4 +104,3 @@ export default function Projects() {
     </main>
   )
 }
-
