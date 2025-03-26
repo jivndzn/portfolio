@@ -1,11 +1,16 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Code, Database, Globe, Layers, Server, GraduationCap, Building, Calendar } from "lucide-react"
+import { useState, useEffect } from "react"
 
 export default function AboutMe() {
+  const { scrollYProgress } = useScroll()
+  const blurValue = useTransform(scrollYProgress, [0, 0.1], [0, 8])
+  const brightnessValue = useTransform(scrollYProgress, [0, 0.1], [0.7, 0.5])
+
   const techStack = [
     { icon: <Globe className="w-8 h-8" />, name: "Frontend", skills: "Vue, Next.js, Tailwind CSS" },
     { icon: <Server className="w-8 h-8" />, name: "Backend", skills: "Node.js, Python" },
@@ -17,27 +22,13 @@ export default function AboutMe() {
   const workExperiences = [
     {
       position: "Software Engineer Intern",
-      company: "Company Name",
+      company: "SCRUBBED.NET GLOBAL INC.",
       location: "City, Country",
-      period: "Month Year - Month Year",
-      description: "Description of the role and responsibilities.",
+      period: "November 2024 - January 2025",
+      description: "Developed frontend interfaces using Vue.js and integrated RESTful APIs with backend systems. Responsibilities included working on a document management GUI and an API documentation database. Tasks involved conducting usability testing, resolving frontend issues, and collaborating with teams to ensure system integration.",
     },
-    {
-        position: "Software Engineer Intern",
-        company: "Company Name",
-        location: "City, Country",
-        period: "Month Year - Month Year",
-        description: "Description of the role and responsibilities.",
-      },
-      {
-        position: "Software Engineer Intern",
-        company: "Company Name",
-        location: "City, Country",
-        period: "Month Year - Month Year",
-        description: "Description of the role and responsibilities.",
-      },
-]
-
+    
+  ]
 
   const education = [
     {
@@ -48,32 +39,39 @@ export default function AboutMe() {
       description: "Bachelor's degree in Computer Engineering with a focus software engineering principles.",
     },
     {
-        degree: "Senior High School: Humanities and Social Sciences",
-        institution: "University of the Assumption",
-        location: "San Fernando, Pampanga, Philippines",
-        period: "2017 - 2019",
-        description: "Graduated with High Honors in the Humanities and Social Sciences strand.",
-      },
-      {
-        degree: "Grade School until Junior High School",
-        institution: "University of the Assumption",
-        location: "San Fernando, Pampanga, Philippines",
-        period: "2007 - 2017",
-        description: "",
-      },
+      degree: "Senior High School: Humanities and Social Sciences",
+      institution: "University of the Assumption",
+      location: "San Fernando, Pampanga, Philippines",
+      period: "2017 - 2019",
+      description: "Graduated with High Honors in the Humanities and Social Sciences strand.",
+    },
+    {
+      degree: "Grade School until Junior High School",
+      institution: "University of the Assumption",
+      location: "San Fernando, Pampanga, Philippines",
+      period: "2007 - 2017",
+      description: "",
+    },
   ]
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* Background Image */}
-      <div className="fixed inset-0 z-0">
-        <Image src="/background.jpg" alt="Misty forest background" fill className="object-cover object-center" priority />
-      </div>
+      {/* Fixed Background Image with Scroll Effects */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-0 h-screen"
+        style={{
+          filter: `blur(${blurValue.get()}px) brightness(${brightnessValue.get()})`,
+        }}
+      >
+        <Image 
+          src="/background.jpg" 
+          alt="Misty forest background" 
+          fill 
+          className="object-cover object-center" 
+          priority 
+        />
+      </motion.div>
 
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40 z-0" />
-
-      {/* Content */}
       <div className="relative z-10 px-4 py-8 min-h-screen">
         <div className="max-w-6xl mx-auto">
           <motion.div
