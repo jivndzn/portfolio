@@ -1,9 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 interface Project {
   title: string
@@ -14,6 +15,10 @@ interface Project {
 }
 
 export default function Projects() {
+  const { scrollYProgress } = useScroll()
+  const blurValue = useTransform(scrollYProgress, [0, 0.1], [0, 8])
+  const brightnessValue = useTransform(scrollYProgress, [0, 0.1], [0.7, 0.5])
+
   const projects: Project[] = [
     {
       title: "Portfolio v2",
@@ -26,19 +31,22 @@ export default function Projects() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* Background Image */}
-      <Image
-        src="/background.jpg"
-        alt="Misty forest background"
-        fill
-        className="object-cover object-center"
-        loading="lazy"
-      />
-      
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      {/* Fixed Background Image with Scroll Effects */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-0 h-screen"
+        style={{
+          filter: `blur(${blurValue.get()}px) brightness(${brightnessValue.get()})`,
+        }}
+      >
+        <Image
+          src="/background.jpg"
+          alt="Misty forest background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </motion.div>
 
-      {/* Content */}
       <div className="relative z-10 px-4 py-8 min-h-screen max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -20 }}

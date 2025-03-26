@@ -10,9 +10,9 @@ export default function Home() {
   const { scrollYProgress } = useScroll()
   const [isMounted, setIsMounted] = useState(false)
 
-  // Modify opacity transformation to ensure visibility from the top
-  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1])
+  // Blur and brightness transformation based on scroll
   const blurValue = useTransform(scrollYProgress, [0, 0.1], [0, 8])
+  const brightnessValue = useTransform(scrollYProgress, [0, 0.1], [0.7, 0.5])
 
   useEffect(() => {
     setIsMounted(true)
@@ -27,12 +27,11 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen scroll-smooth">
-      {/* Background Image with Scroll Effects */}
+      {/* Fixed Background Image with Scroll Effects */}
       <motion.div
-        className="fixed inset-0 z-0"
+        className="fixed top-0 left-0 right-0 z-0 h-screen"
         style={{
-          opacity: 1, // Always fully visible
-          filter: `blur(${blurValue.get()}px) brightness(0.7)`,
+          filter: `blur(${blurValue.get()}px) brightness(${brightnessValue.get()})`,
         }}
       >
         <Image
@@ -44,8 +43,7 @@ export default function Home() {
         />
       </motion.div>
 
-      {/* Rest of the code remains the same as in the previous submission */}
-      {/* Hero Section */}
+      {/* Rest of the page content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <motion.nav
           initial={{ opacity: 0, y: -20 }}

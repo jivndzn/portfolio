@@ -1,9 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Twitter, Mail, Github, Facebook, Linkedin, Phone } from "lucide-react"
+import { useState, useEffect } from "react"
 
 interface Colleague {
   name: string
@@ -13,6 +14,10 @@ interface Colleague {
 }
 
 export default function Contact() {
+  const { scrollYProgress } = useScroll()
+  const blurValue = useTransform(scrollYProgress, [0, 0.1], [0, 8])
+  const brightnessValue = useTransform(scrollYProgress, [0, 0.1], [0.7, 0.5])
+
   const contacts = [
     {
       platform: "Twitter",
@@ -93,13 +98,22 @@ export default function Contact() {
 
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* Background Image */}
-      <Image src="/background.jpg" alt="Misty forest background" fill className="object-cover object-center" priority />
+      {/* Fixed Background Image with Scroll Effects */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 z-0 h-screen"
+        style={{
+          filter: `blur(${blurValue.get()}px) brightness(${brightnessValue.get()})`,
+        }}
+      >
+        <Image
+          src="/background.jpg"
+          alt="Misty forest background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+      </motion.div>
 
-      {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30" />
-
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 py-20">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -206,4 +220,3 @@ export default function Contact() {
     </main>
   )
 }
-
