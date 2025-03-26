@@ -14,7 +14,6 @@ export default function AboutMe() {
   })
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.3])
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9])
 
   const techStack = [
     { icon: <Globe className="w-8 h-8" />, name: "Frontend", skills: "Vue, Next.js, Tailwind CSS" },
@@ -61,7 +60,7 @@ export default function AboutMe() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-black">
       {/* Background Image with Parallax Effect */}
-      <motion.div style={{ opacity, scale }} className="fixed inset-0 z-0">
+      <motion.div style={{ opacity }} className="fixed inset-0 z-0">
         <Image
           src="/background.jpg"
           alt="Misty forest background"

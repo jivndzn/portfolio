@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Code, Database, Globe, Layers, Server } from "lucide-react"
 
 export default function Home() {
   const { scrollYProgress } = useScroll()
