@@ -1,11 +1,12 @@
-import './globals.css'
-import { Inter } from 'next/font/google'
+import type React from "react"
+import "./globals.css"
+import { Inter } from "next/font/google"
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: 'Ivan Dizon',
-  description: 'Personal portfolio of jivndzn',
+  title: "Ivan Dizon | Portfolio",
+  description: "Personal portfolio of Ivan Dizon, Full Stack Developer and Computer Engineer",
 }
 
 export default function RootLayout({
